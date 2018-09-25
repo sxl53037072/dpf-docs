@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>       <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>          <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>          <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <title>Dynamic Transaction - DPF 快速开发框架</title>
+    <meta name="description" content="快速构建后端框架" />
+    <meta name="author" content="songxl">
+    <meta charset="UTF-8">
+    <link rel="icon" href="../themes/daux/img/favicon-red.png" type="image/x-icon">
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+    <!-- CSS -->
+    <link href='../themes/daux/css/theme-red.min.css' rel='stylesheet' type='text/css'>
+            <!-- Tipue Search -->
+        <link href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body class="with-float">
+    
+<header class="Navbar hidden-print">
+    <a class="Navbar__brand" href="../index.html">DPF 快速开发框架</a>
+
+    <div class="Search">
+        <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451"><path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/></svg>
+        <input type="search" id="tipue_search_input" class="Search__field" placeholder="Search..." autocomplete="on" results=25 autosave=text_search>
+    </div>
+</header>
+<div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <div class="Collapsible__container">
+            <button type="button" class="Button Collapsible__trigger">
+                <span class="Collapsible__trigger--bar"></span>
+                <span class="Collapsible__trigger--bar"></span>
+                <span class="Collapsible__trigger--bar"></span>
+            </button>
+        </div>
+
+        <div class="Collapsible__content">
+            <!-- Navigation -->
+            <ul class='Nav'><li class='Nav__item '><a href="../Getting_Started.html">Getting Started</a></li><li class='Nav__item Nav__item--open has-children'><a href="../Features/Dependency Config.html" class="folder"><i class="Nav__arrow">&nbsp;</i>Features</a><ul class='Nav'><li class='Nav__item '><a href="../Features/Dependency Config.html">Dependency Config</a></li><li class='Nav__item '><a href="../Features/Create First XML.html">Create First XML</a></li><li class='Nav__item '><a href="../Features/Transaction File.html">Transaction File</a></li><li class='Nav__item Nav__item--active'><a href="../Features/Dynamic_Transaction.html">Dynamic Transaction</a></li><li class='Nav__item '><a href="../Features/Invoke Interface.html">Invoke Interface</a></li></ul></li><li class='Nav__item  has-children'><a href="../Change Log/Change Log.html" class="folder"><i class="Nav__arrow">&nbsp;</i>Change Log</a><ul class='Nav'><li class='Nav__item '><a href="../Change Log/Change Log.html">Change Log</a></li></ul></li></ul>
+
+            <div class="Links">
+                                    <hr/>
+                                            <a href="https://github.com/sxl53037072/dpf" target="_blank">Download</a>
+                        <br />
+                                            <a href="https://github.com/sxl53037072/dpf" target="_blank">GitHub Repo</a>
+                        <br />
+                                            <a href="https://github.com/sxl53037072/dpf" target="_blank">Help/Support/Bugs</a>
+                        <br />
+                                            <a href="" target="_blank">Made by songxl</a>
+                        <br />
+                                    
+                
+                            </div>
+        </div>
+    </aside>
+    <div class="Columns__right Columns__right--float">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../Features/Dependency Config.html">Features</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Features/Dynamic_Transaction.html">Dynamic Transaction</a></h1>
+                <span style="float: left; font-size: 10px; color: gray;">
+            Tuesday, September 25, 2018 2:20 AM        </span>
+                    </div>
+
+
+    <div class="s-content">
+        <h2 id="page_">动态标签</h2>
+<ul>
+<li>下面以这些事务方法来了解配置文件各个动态标签的含义</li>
+</ul>
+<ol>
+<li>
+<strong>include及sql标签</strong><br />
+<ul>
+<li>include: 引入外部的sql脚本，以refid指定引入的id.</li>
+<li>sql:     预定义sql片段，可以在当前事务文件中共享使用</li>
+</ul>
+<pre><code class="language-xml">     &lt;transactions&gt;
+        &lt;sql id=&quot;pageEndSql&quot;&gt;
+            &lt;![CDATA[
+              ) tz ) ttz
+              WHERE
+              ttz.row_num &lt;= :endNum
+              and
+              ttz.row_num &gt;= :beginNum
+            ]]&gt;
+        &lt;/sql&gt;
+        &lt;sql id=&quot;pageBeginSql&quot;&gt;
+            SELECT
+            ttz.*
+            FROM
+            (SELECT CAST(@rownum :=@rownum + 1 as SIGNED) AS row_num, tz.*
+            FROM(SELECT @rownum := 0) r,(
+        &lt;/sql&gt;
+        &lt;sql id=&quot;whereSql&quot;&gt;
+            and NAME like CONCAT(CONCAT('%',:name),'%')
+            and age = :age
+            &lt;if test=&quot;n != null&quot;&gt;
+                and 1 = 2
+            &lt;/if&gt;
+        &lt;/sql&gt;
+        &lt;!--查询--&gt;
+        &lt;transaction name=&quot;SelectBaseTest.tran.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+            &lt;sql&gt;
+                &lt;include refid=&quot;pageBeginSql&quot; /&gt;
+                  select * from
+                    t_test_tran t
+                  where 1 = 1
+                &lt;include refid=&quot;whereSql&quot; /&gt;
+                &lt;include refid=&quot;pageEndSql&quot; /&gt;
+            &lt;/sql&gt;
+        &lt;/transaction&gt;
+     &lt;/transactions&gt;
+</code></pre>
+</li>
+<li>
+<strong>where及if标签</strong><br />
+<ul>
+<li>where: where包含的内容如果以and或者or开头剔除这些关键字,如果包含内容为空则删除where。</li>
+<li>if:    根据if的条件判断是否需要引入if元素中的内容，可以多重嵌套</li>
+</ul>
+<pre><code class="language-xml">&lt;!--多层if查询--&gt;
+    &lt;transaction name=&quot;SelectBaseTest.tran.if.more.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+        &lt;sql&gt;
+
+            select * from
+            t_test_tran t
+            &lt;where&gt;
+                &lt;if test=&quot;arg1!= null&quot;&gt;
+                    and 1 = 1
+                    &lt;if test=&quot;arg3 !=null&quot;&gt;
+                        and 1 = 3
+                        &lt;if test=&quot;arg6  != null&quot;&gt;
+                            and 1 = 6
+                        &lt;/if&gt;
+                        &lt;if test=&quot;arg7 !=  null&quot;&gt;
+                            and 1 = 7
+                        &lt;/if&gt;
+                        &lt;if test=&quot;arg8!=null&quot;&gt;
+                            and 1 = 8
+                            &lt;if test=&quot;arg9 != null &quot;&gt;
+                                and 1 = 9
+                            &lt;/if&gt;
+                            &lt;if test=&quot; arg10 != null&quot;&gt;
+                                and 1 = 10
+                            &lt;/if&gt;
+                        &lt;/if&gt;
+                    &lt;/if&gt;
+                    &lt;if test=&quot;arg4 != null&quot;&gt;
+                        and 1 = 4
+                    &lt;/if&gt;
+                    &lt;if test=&quot;arg5 != null&quot;&gt;
+                        and 1 = 5
+                    &lt;/if&gt;
+                &lt;/if&gt;
+                &lt;if test=&quot;arg2 != null&quot;&gt;
+                    and 1 = 2
+                &lt;/if&gt;
+            &lt;/where&gt;
+        &lt;/sql&gt;
+    &lt;/transaction&gt;
+</code></pre>
+</li>
+<li>
+<strong>choose, when, otherwise</strong><br />
+<ul>
+<li>choose: 条件判断语句用来包含when和otherwise标签。</li>
+<li>when:   根据条件判断是否需要引入when元素中的内容，有且只能有一个when成立</li>
+<li>otherwise:   when条件全部未成立则引入otherwise内容</li>
+</ul>
+<pre><code class="language-xml">  &lt;!--choose查询--&gt;
+  &lt;transaction name=&quot;SelectBaseTest.tran.choose.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+      &lt;sql&gt;
+
+          select * from
+          t_test_tran t
+          &lt;where&gt;
+              &lt;choose&gt;
+                  &lt;when test=&quot;arg2 !=null &quot;&gt;
+                      id = :arg2
+                  &lt;/when &gt;
+                  &lt;when test=&quot;arg3 !=null &quot;&gt;
+                      id = :arg3
+                  &lt;/when &gt;
+                  &lt;when test=&quot; arg4 != null &quot;&gt;
+                      id = :arg4
+                  &lt;/when &gt;
+                  &lt;otherwise&gt;
+                      1 = 1
+                  &lt;/otherwise&gt;
+              &lt;/choose&gt;
+          &lt;/where&gt;
+      &lt;/sql&gt;
+  &lt;/transaction&gt;
+</code></pre>
+</li>
+<li>
+<strong>foreach</strong><br />
+<ul>
+<li>foreach: 循环指定的list数组生成sql语句，用到sql注入标签${},<strong>需要慎重防止sql注入</strong>。
+<ul>
+<li>collection: 循环数组名</li>
+<li>index: 循环索引从0开始</li>
+<li>item: 每次循环的对象，在主体内容中只能使用${}标签进行引入变量</li>
+<li>open: 开始循环前缀</li>
+<li>separator: 每次循环分隔符</li>
+<li>close: 结束循环后缀</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-xml">   &lt;transactions&gt;     
+     &lt;transaction name=&quot;SelectBaseTest.tran.foreach.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+         &lt;sql&gt;
+             select * from
+             t_test_tran t
+             &lt;where&gt;
+                 id in
+                 &lt;if test=&quot;list != null&quot;&gt;
+                     &lt;foreach collection=&quot;list&quot; index=&quot;index&quot; item=&quot;item&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;
+                            ${item}
+                     &lt;/foreach&gt;
+                 &lt;/if&gt;
+
+             &lt;/where&gt;
+         &lt;/sql&gt;
+     &lt;/transaction&gt;
+
+     &lt;!--foreach删除--&gt;
+       &lt;transaction name=&quot;DeleteBaseTest.tran.foreach.delete&quot; event=&quot;delete&quot;&gt;
+           &lt;sql&gt;
+               delete from t_test_tran where id in
+               &lt;foreach collection=&quot;list&quot; index=&quot;index&quot; item=&quot;item&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;
+                   ${item.id}
+               &lt;/foreach&gt;
+           &lt;/sql&gt;
+       &lt;/transaction&gt;
+  &lt;/transactions&gt;
+</code></pre>
+</li>
+<li>
+<strong>bind</strong><br />
+<ul>
+<li>bind: 绑定参数，或者对现有参数进行修改，可以直接引入java类中静态变量，具体参考ognl表达式
+<ul>
+<li>name: 参数名，用来在sql中进行引用</li>
+<li>value: 参数值，直接使用ognl表达式</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-xml">&lt;transactions&gt;
+    &lt;transaction name=&quot;SelectBaseTest.tran.bind.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+        &lt;sql&gt;
+            select * from
+            t_test_tran t
+            &lt;where&gt;
+                &lt;if test=&quot;arg2 != null&quot;&gt;
+                    &lt;bind name=&quot;arg&quot; value=&quot;'2000000'+arg2&quot; /&gt;
+                    id in (${arg})
+                &lt;/if&gt;
+                &lt;if test=&quot;arg3 != null&quot;&gt;
+                    &lt;bind name=&quot;arg&quot; value=&quot;'2000000'+arg3&quot; /&gt;
+                    id = :arg
+                &lt;/if&gt;
+                &lt;if test=&quot;arg4 != null&quot;&gt;
+                    &lt;bind name=&quot;arg&quot; value=&quot;'2000000'+arg4&quot; /&gt;
+                    id = ${arg}
+                &lt;/if&gt;
+            &lt;/where&gt;
+        &lt;/sql&gt;
+    &lt;/transaction&gt;
+
+    &lt;!--静态数据引入 查询--&gt;
+    &lt;transaction name=&quot;SelectBaseTest.tran.static.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+        &lt;sql&gt;
+            select * from t_test_tran
+            &lt;bind name=&quot;id&quot; value=&quot;@integration.select.SelectBaseTest@ID&quot; /&gt;
+            where id = ${id}
+        &lt;/sql&gt;
+    &lt;/transaction&gt; 
+ &lt;/transactions&gt;
+</code></pre>
+</li>
+<li>
+<strong>trim</strong><br />
+<ul>
+<li>trim: trim 是更灵活用来去除多余关键字的标签，where set标签基于trim创建
+<ul>
+<li>prefix: 前缀覆盖并增加其内容</li>
+<li>prefixOverrides: 前缀判断的条件</li>
+<li>suffix: 后缀覆盖并增加其内容</li>
+<li>suffixOverrides:后缀判断的条件</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-xml">&lt;transactions&gt;
+  &lt;!--trim 查询--&gt;
+  &lt;transaction name=&quot;SelectBaseTest.tran.trim.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+      &lt;sql&gt;
+          select * from t_test_tran
+          &lt;trim prefix=&quot;where&quot; prefixOverrides=&quot;AND|OR&quot;&gt;
+              &lt;if test=&quot;id!=null&quot;&gt;
+                  and id=:id
+              &lt;/if&gt;
+              &lt;if test=&quot;name!=null&quot;&gt;
+                  and name=:name
+              &lt;/if&gt;
+          &lt;/trim&gt;
+      &lt;/sql&gt;
+  &lt;/transaction&gt;   
+  &lt;!--limit 查询--&gt;
+  &lt;transaction name=&quot;SelectBaseTest.tran.limit.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+      &lt;sql&gt;
+          select * from t_test_tran
+          &lt;trim prefix=&quot;limit&quot; prefixOverrides=&quot;,&quot;&gt;
+              &lt;if test=&quot;begin != null&quot;&gt;
+                  ${begin}
+              &lt;/if&gt;
+              &lt;if test=&quot;end != null&quot;&gt;
+                  ,${end}
+              &lt;/if&gt;
+          &lt;/trim&gt;
+      &lt;/sql&gt;
+  &lt;/transaction&gt;
+&lt;/transactions&gt;
+</code></pre>
+</li>
+<li>
+<strong>before,after</strong><br />
+<ul>
+<li>before: 事务前置方法，基于ognl表达式，方法首个参数为map类型，map.get(&quot;params&quot;)可以用于获取事务参数(类型为map),在方法中对该参数修改后返回可以改变参数值</li>
+<li>after:  事务后置方法，基于ognl表达式，方法首个参数为map类型，map.get(&quot;result&quot;)可以获取事务返回数组，可修改后返回</li>
+</ul>
+<pre><code class="language-xml">     &lt;!--静态前后置数据引入--&gt;
+     &lt;transaction name=&quot;SelectBaseTest.tran.static.around.select&quot; event=&quot;select&quot; return=&quot;true&quot;
+                  before=&quot;@integration.select.SelectBaseTest@before&quot;
+                  after=&quot;@integration.select.SelectBaseTest@after&quot;&gt;
+         &lt;sql&gt;
+             select * from t_test_tran
+             where id = :a
+         &lt;/sql&gt;
+     &lt;/transaction&gt;
+</code></pre>
+java静态方法
+<pre><code class="language-java">     public class SelectBaseTest{
+         public static Object before(Map map){
+             Map params = (Map) map.get(&quot;params&quot;);
+             //获取事务bean
+             TransactionService transactionService = (TransactionService) BeanLoader.getBean(&quot;transactionService&quot;);
+             String a = transactionService.doTranString(&quot;SelectBaseTest.tran.static.before.id.select&quot;,null);
+             params.put(&quot;a&quot;, a);
+             return params;
+         }
+         public static Object after(Map map){
+             List result = (ArrayList) map.get(&quot;result&quot;);
+             result.add(new HashMap(){{
+                 put(&quot;id&quot;, &quot;4&quot;);
+                 put(&quot;name&quot;, &quot;4&quot;);
+                 put(&quot;age&quot;, &quot;4&quot;);
+                 put(&quot;email&quot;, &quot;4&quot;);
+                 put(&quot;phone&quot;, &quot;4&quot;);
+                 put(&quot;remark&quot;, &quot;4&quot;);
+                 put(&quot;create_time&quot;, &quot;2018-09-14 15:07:43.0&quot;);
+             }});
+             return result;
+         }
+      }
+</code></pre>
+</li>
+<li>
+<strong>set</strong><br />
+<ul>
+<li>set: set内容如果以逗号结尾则删除逗号，如果set中无内容则删除set标签</li>
+</ul>
+<pre><code class="language-xml">     &lt;!--更新set--&gt;
+         &lt;transaction name=&quot;UpdateBaseTest.tran.set.update&quot; event=&quot;insert&quot;&gt;
+             &lt;sql&gt;
+                 update t_test_tran
+                 &lt;set&gt;
+                     &lt;if test=&quot;name != null&quot;&gt;
+                         name=:name,
+                     &lt;/if&gt;
+                     &lt;if test=&quot;age != null&quot;&gt;
+                         age=:age,
+                     &lt;/if&gt;
+                     &lt;if test=&quot;email != null&quot;&gt;
+                         email=:email,
+                     &lt;/if&gt;
+                 &lt;/set&gt;
+                 where id = :id
+             &lt;/sql&gt;
+         &lt;/transaction&gt;
+</code></pre>
+</li>
+</ol>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../Features/Transaction File.html">Previous</a></li>            <li class=Pager--next><a href="../Features/Invoke Interface.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- jQuery -->
+    <script src="../themes/daux/js/jquery-1.11.3.min.js"></script>
+
+    <!-- hightlight.js -->
+    <script src="../themes/daux/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- JS -->
+    
+    <script src="../themes/daux/js/daux.js"></script>
+
+            <!-- Tipue Search -->
+        <script type="text/javascript" src="../tipuesearch/tipuesearch.js"></script>
+
+        <script>
+            window.onunload = function(){}; // force $(document).ready to be called on back/forward navigation in firefox
+            $(function() {
+                tipuesearch({
+                    'base_url': '../'
+                });
+            });
+        </script>
+    
+</body>
+</html>

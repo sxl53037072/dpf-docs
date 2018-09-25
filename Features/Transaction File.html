@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>       <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>          <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>          <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <title>Transaction File - DPF 快速开发框架</title>
+    <meta name="description" content="快速构建后端框架" />
+    <meta name="author" content="songxl">
+    <meta charset="UTF-8">
+    <link rel="icon" href="../themes/daux/img/favicon-red.png" type="image/x-icon">
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+    <!-- CSS -->
+    <link href='../themes/daux/css/theme-red.min.css' rel='stylesheet' type='text/css'>
+            <!-- Tipue Search -->
+        <link href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body class="with-float">
+    
+<header class="Navbar hidden-print">
+    <a class="Navbar__brand" href="../index.html">DPF 快速开发框架</a>
+
+    <div class="Search">
+        <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451"><path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/></svg>
+        <input type="search" id="tipue_search_input" class="Search__field" placeholder="Search..." autocomplete="on" results=25 autosave=text_search>
+    </div>
+</header>
+<div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <div class="Collapsible__container">
+            <button type="button" class="Button Collapsible__trigger">
+                <span class="Collapsible__trigger--bar"></span>
+                <span class="Collapsible__trigger--bar"></span>
+                <span class="Collapsible__trigger--bar"></span>
+            </button>
+        </div>
+
+        <div class="Collapsible__content">
+            <!-- Navigation -->
+            <ul class='Nav'><li class='Nav__item '><a href="../Getting_Started.html">Getting Started</a></li><li class='Nav__item Nav__item--open has-children'><a href="../Features/Dependency Config.html" class="folder"><i class="Nav__arrow">&nbsp;</i>Features</a><ul class='Nav'><li class='Nav__item '><a href="../Features/Dependency Config.html">Dependency Config</a></li><li class='Nav__item '><a href="../Features/Create First XML.html">Create First XML</a></li><li class='Nav__item Nav__item--active'><a href="../Features/Transaction File.html">Transaction File</a></li><li class='Nav__item '><a href="../Features/Dynamic_Transaction.html">Dynamic Transaction</a></li><li class='Nav__item '><a href="../Features/Invoke Interface.html">Invoke Interface</a></li></ul></li><li class='Nav__item  has-children'><a href="../Change Log/Change Log.html" class="folder"><i class="Nav__arrow">&nbsp;</i>Change Log</a><ul class='Nav'><li class='Nav__item '><a href="../Change Log/Change Log.html">Change Log</a></li></ul></li></ul>
+
+            <div class="Links">
+                                    <hr/>
+                                            <a href="https://github.com/sxl53037072/dpf" target="_blank">Download</a>
+                        <br />
+                                            <a href="https://github.com/sxl53037072/dpf" target="_blank">GitHub Repo</a>
+                        <br />
+                                            <a href="https://github.com/sxl53037072/dpf" target="_blank">Help/Support/Bugs</a>
+                        <br />
+                                            <a href="" target="_blank">Made by songxl</a>
+                        <br />
+                                    
+                
+                            </div>
+        </div>
+    </aside>
+    <div class="Columns__right Columns__right--float">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../Features/Dependency Config.html">Features</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Features/Transaction File.html">Transaction File</a></h1>
+                <span style="float: left; font-size: 10px; color: gray;">
+            Tuesday, September 25, 2018 12:05 AM        </span>
+                    </div>
+
+
+    <div class="s-content">
+        <h2 id="page_">配置文件标签解析</h2>
+<ul>
+<li>下面以这些事务方法来了解配置文件各个标签的含义</li>
+</ul>
+<ol>
+<li>
+<strong>查询事务</strong>,直接返回整表数据。
+<pre><code class="language-xml"> &lt;!--查询test表数据--&gt;
+ &lt;transaction name=&quot;demo.test.select&quot; event=&quot;select&quot; return=&quot;true&quot;&gt;
+     &lt;sql&gt;
+         select * from T_TEST_TRAN
+     &lt;/sql&gt;
+ &lt;/transaction&gt;
+</code></pre>
+</li>
+<li>
+<strong>新增事务</strong>,包含前置查询序列,并且在新增完毕后返回序列。
+<pre><code class="language-xml"> &lt;!--1.1前置查询sequence--&gt;
+ &lt;transaction name=&quot;demo.test.insert.seq.select&quot; event=&quot;function&quot; return=&quot;true&quot;&gt;
+    &lt;sql&gt;
+        select nextval('seq_test_tran') as &quot;seq&quot;
+    &lt;/sql&gt;
+    &lt;variable name=&quot;seq&quot;&gt;seq&lt;/variable&gt;
+&lt;/transaction&gt;
+ &lt;!--1.2执行新增操作--&gt;
+ &lt;transaction name=&quot;demo.test.insert&quot; event=&quot;insert&quot;&gt;
+    &lt;refer name=&quot;demo.test.insert.seq.select&quot; type=&quot;before&quot; /&gt;
+     &lt;sql&gt;
+      	insert into T_TEST_TRAN(id, name, age, email, phone, remark, create_time)
+      		select :seq, :name, :age, :email, :phone, :remark, now()
+     &lt;/sql&gt;
+ &lt;/transaction&gt;
+</code></pre>
+</li>
+<li>
+<strong>更新事务</strong>,根据参数进行数据更新,对参数进行空判断。
+<pre><code class="language-xml"> &lt;!--更新test表数据--&gt;
+ &lt;transaction name=&quot;demo.tran.update&quot; event=&quot;update&quot;&gt;
+    &lt;sql&gt;
+        update T_TEST_TRAN
+        set name = :name,
+            age = :age,
+            email = :email,
+            phone = :phone,
+            remark = :remark
+        &lt;if test=&quot;id != null&quot;&gt;
+            where id = :id
+        &lt;/if&gt;
+        &lt;if test=&quot;id == null&quot;&gt;
+            where 1 = 2
+        &lt;/if&gt;
+    &lt;/sql&gt;
+&lt;/transaction&gt;
+</code></pre>
+</li>
+<li>
+<strong>删除事务</strong>,批量删除数据，id数值类似 1,2,3 事务会自动对参数进行拆分批量删除。
+<pre><code class="language-xml"> &lt;!--删除test表对应主键的数据--&gt;
+ &lt;transaction name=&quot;demo.tran.delete&quot; event=&quot;batch&quot;&gt;
+    &lt;sql&gt;
+        delete from  T_TEST_TRAN            
+        &lt;if test=&quot;id != null&quot;&gt;
+            where id = ?
+        &lt;/if&gt;
+        &lt;if test=&quot;id == null&quot;&gt;
+            where 1 = 2
+        &lt;/if&gt;
+    &lt;/sql&gt;
+ 	&lt;parameter name=&quot;id&quot; from=&quot;json&quot; split=&quot;true&quot;&gt;&lt;bind&gt;1&lt;/bind&gt;&lt;/parameter&gt;
+&lt;/transaction&gt;
+</code></pre>
+</li>
+</ol>
+<ul>
+<li>
+<strong>事务标签含义</strong>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th align="center">含义</th>
+<th align="center">约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction</td>
+<td align="center">事务方法标签</td>
+<td align="center">在一个配置文件中可以有N个该标签</td>
+</tr>
+<tr>
+<td>sql</td>
+<td align="center">sql标签，用来写入需要执行的SQL</td>
+<td align="center">每个事务方法1个该标签</td>
+</tr>
+<tr>
+<td>refer</td>
+<td align="center">依赖事务方法包括前置依赖和后置依赖</td>
+<td align="center">每个事务方法可以引入多个依赖</td>
+</tr>
+<tr>
+<td>parameter</td>
+<td align="center">参数注入</td>
+<td align="center">每个事务方法可以多个参数注入配置</td>
+</tr>
+<tr>
+<td>variable</td>
+<td align="center">变量赋值</td>
+<td align="center">配合function事务进行变量赋值，变量在整个事务生命周期中都可以读取到</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>每个事务标签的属性及值含义</li>
+</ul>
+<ol>
+<li>
+<strong>transaction</strong>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="center">含义</th>
+<th align="center">约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td align="center">事务名称</td>
+<td align="center">1.必须全局唯一 <br /> 2.第一个点号前的文字需要和事务文件名相同 <br /> 3.事务名结尾必须是CURD标识，如insert,select等</td>
+</tr>
+<tr>
+<td>event</td>
+<td align="center">事务执行的动作含义</td>
+<td align="center">1.select:查询事务 <br /> 2.insert：新增事务 <br /> 3.delete:删除事务 <br /> 4.update:更新事务 <br /> 5.function 函数事务 <br /> 6.batch 批处理事务</td>
+</tr>
+<tr>
+<td>return</td>
+<td align="center">是否返回，可不写</td>
+<td align="center">可不写，只有值只能为true,标识返回事务查询的内容</td>
+</tr>
+<tr>
+<td>值</td>
+<td align="center">整个事务的配置</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>
+<strong>sql</strong>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="center">含义</th>
+<th align="center">约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>值</td>
+<td align="center">事务的SQL语句，参数以:开头进行配置</td>
+<td align="center">特殊字符参照XML标准</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>
+<strong>refer</strong>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="center">含义</th>
+<th align="center">约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td align="center">依赖事务的名称</td>
+<td align="center">尽量依赖于本配置文件中的事务</td>
+</tr>
+<tr>
+<td>type</td>
+<td align="center">依赖顺序</td>
+<td align="center">before:前置事务；after:后置事务</td>
+</tr>
+</tbody>
+</table>
+<pre><code>4. **parameter**
+
+| 属性           | 含义                                     | 约束                          |
+| ------------- |:-------------:                           | :-------------:                |
+| name           | 参数名，对应传入的参数                     |      |
+| from           | 参数来源                                 |  1.constant:静态变量，其后必须跟上对应的value值 &lt;br /&gt; 2.json:json对象 &lt;br /&gt; 3.variable:前置事务传递下来的变量&lt;br /&gt; 4.xml:待定    |
+| value          | 参数值，可不写                            |  当from=constant时，该属性标识静态变量的值    |
+| path           | 访问层级，可不写                           |  当from=json时，该属性标识json访问的层级    |
+| split          | 批量事务中，需要对参数进行split切割时使用    |  参数为1,2,3,4将其分词拆分为多个SQL进行批量新增/更新/删除，配合event=batch使用 ，event=delete也可以使用    |
+| 值             | 参数绑定的？位置，从1开始                   |  只能包含&lt;bing&gt;&lt;/bind&gt;标签，标识参数绑定的？位置，可以同时绑定多个？如&lt;bing&gt;1&lt;/bind&gt;&lt;bing&gt;2&lt;/bind&gt;标识绑定第一个和第二个?  |
+
+5. **variable**
+
+| 属性           | 含义                                     | 约束                          |
+| ------------- |:-------------:                           | :-------------:                |
+| name           | 参数名 引用事务通过variable进行调用        |                    |
+| 值             | sql返回的对应别名                         |   配合type=&quot;function&quot;一起使用     |
+
+###
+  
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../Features/Create First XML.html">Previous</a></li>            <li class=Pager--next><a href="../Features/Dynamic_Transaction.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- jQuery -->
+    <script src="../themes/daux/js/jquery-1.11.3.min.js"></script>
+
+    <!-- hightlight.js -->
+    <script src="../themes/daux/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- JS -->
+    
+    <script src="../themes/daux/js/daux.js"></script>
+
+            <!-- Tipue Search -->
+        <script type="text/javascript" src="../tipuesearch/tipuesearch.js"></script>
+
+        <script>
+            window.onunload = function(){}; // force $(document).ready to be called on back/forward navigation in firefox
+            $(function() {
+                tipuesearch({
+                    'base_url': '../'
+                });
+            });
+        </script>
+    
+</body>
+</html>
